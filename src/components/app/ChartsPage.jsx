@@ -11,5 +11,5 @@ export class ChartsPage extends React.Component {
 }
 
 ChartsPage.propTypes = {
-  items: React.PropTypes.array.isRequired
+  items: React.PropTypes.array
 };

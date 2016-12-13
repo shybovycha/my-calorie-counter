@@ -11,6 +11,6 @@ export class SettingsPage extends React.Component {
 }
 
 SettingsPage.propTypes = {
-  currentSettings: React.PropTypes.object.isRequired,
-  availableSettings: React.PropTypes.object.isRequired
+  currentSettings: React.PropTypes.object,
+  availableSettings: React.PropTypes.object
 };

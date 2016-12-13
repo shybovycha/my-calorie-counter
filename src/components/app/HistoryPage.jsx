@@ -11,5 +11,5 @@ export class HistoryPage extends React.Component {
 }
 
 HistoryPage.propTypes = {
-  items: React.PropTypes.array.isRequired
+  items: React.PropTypes.array
 };

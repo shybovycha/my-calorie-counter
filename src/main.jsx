@@ -20,13 +20,13 @@ ReactDOM.render((
     <Router history={hashHistory}>
       <Route path="/" component={DashboardPageContainer} />
 
-      <Route path="/track">
-        <Route path="/food" component={TrackFoodPage} />
-        <Route path="/workout" component={TrackWorkoutPage} />
-        <Route path="/weight" component={TrackWeightPage} />
+      <Route path="track">
+        <Route path="food" component={TrackFoodPage} />
+        <Route path="workout" component={TrackWorkoutPage} />
+        <Route path="weight" component={TrackWeightPage} />
       </Route>
 
-      <Route path="/status">
+      <Route path="status">
         <Route path="history" component={HistoryPage} />
         <Route path="charts" component={ChartsPage} />
       </Route>
