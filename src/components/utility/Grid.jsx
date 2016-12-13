@@ -9,3 +9,13 @@ export class Row extends React.Component {
     );
   }
 }
+
+export class Col extends React.Component {
+  render() {
+    return (
+      <div className="col">
+        {this.props.children}
+      </div>
+    );
+  }
+}
