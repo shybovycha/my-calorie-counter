@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { moment } from 'moment';
+import moment from 'moment';
 
 const getDailyBalance = function (state) {
   const { settings, weightData } = state;

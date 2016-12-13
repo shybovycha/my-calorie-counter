@@ -1,14 +1,14 @@
-import { React } from 'react';
+import React from 'react';
 
-import { Page } from 'components/utility/Page';
-import { Header } from 'components/utility/Header';
-import { Content } from 'components/utility/Content';
-import { Footer } from 'components/utility/Footer';
+import { Page } from '../utility/Page';
+import { Header } from '../utility/Header';
+import { Content } from '../utility/Content';
+import { Footer } from '../utility/Footer';
 
-import { Button } from 'components/utility/Button';
+import { Button } from '../utility/Button';
 
-import { Row } from 'components/utility/Row';
-import { Col } from 'components/utility/Col';
+import { Row } from '../utility/Row';
+import { Col } from '../utility/Col';
 
 export class DashboardPage extends React.Component {
   render() {

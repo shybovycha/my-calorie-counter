@@ -1,6 +1,6 @@
-import { React } from 'react';
+import React from 'react';
 
-import { Page } from 'components/utility/Page';
+import { Page } from './Page';
 
 export class FormPage extends React.Component {
   render() {

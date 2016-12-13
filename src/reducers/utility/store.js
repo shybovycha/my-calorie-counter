@@ -1,8 +1,8 @@
 import { combineReducers, createStore } from 'redux';
 
-import { itemsReducer } from 'reducers/itemsReducer';
-import { weightReducer } from 'reducers/weightReducer';
-import { settingsReducer } from 'reducers/settingsReducer';
+import { itemsReducer } from '../itemsReducer';
+import { weightReducer } from '../weightReducer';
+import { settingsReducer } from '../settingsReducer';
 
 const rootReducer = combineReducers({
   items: itemsReducer,

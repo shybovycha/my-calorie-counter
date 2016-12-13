@@ -1,7 +1,7 @@
-import { React } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 
-import { Icon } from 'components/utility/Icon';
+import { Icon } from './Icon';
 
 export class Button extends React.Component {
   render() {

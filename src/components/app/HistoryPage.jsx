@@ -1,6 +1,6 @@
-import { React } from 'react';
+import React from 'react';
 
-import { StatusPage } from 'components/utility/StatusPage';
+import { StatusPage } from '../utility/StatusPage';
 
 export class HistoryPage extends React.Component {
   render() {

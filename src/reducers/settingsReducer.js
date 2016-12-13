@@ -1,4 +1,4 @@
-import { initialState, ACTION } from 'reducers/utility/constants';
+import { initialState, ACTION } from './utility/constants';
 
 export const settingsReducer = function (state = initialState.settings, action) {
   switch (action.type) {

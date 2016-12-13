@@ -1,6 +1,6 @@
-import { React } from 'react';
+import React from 'react';
 
-import { FormPage } from 'components/utility/FormPage';
+import { FormPage } from '../utility/FormPage';
 
 export class SettingsPage extends React.Component {
   render() {
