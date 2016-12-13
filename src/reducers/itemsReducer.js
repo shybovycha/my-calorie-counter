@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import { initialState, ACTION } from './utility/constants';
+import { initialState, ACTION } from '../constants/index';
 
 export const itemsReducer = function (state = initialState.items, action) {
   switch (action.type) {

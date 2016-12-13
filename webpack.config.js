@@ -1,8 +1,11 @@
+var webpack = require('webpack');
+
 module.exports = {
-  entry:  __dirname + "/src/main.jsx",
+  entry:  __dirname + '/src/main.jsx',
+  devtool: 'source-map',
   output: {
-    path: __dirname + "/",
-    filename: "bundle.js"
+    path: __dirname + '/',
+    filename: 'bundle.js'
   },
   module: {
     loaders: [
@@ -18,5 +21,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
-  }
+  },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false }
+    })
+  ]
 };

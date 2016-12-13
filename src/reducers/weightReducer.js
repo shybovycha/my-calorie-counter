@@ -1,4 +1,4 @@
-import { initialState, ACTION } from './utility/constants';
+import { initialState, ACTION } from '../constants/index';
 
 export const weightReducer = function (state = initialState.weightData, action) {
   switch (action.type) {

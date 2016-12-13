@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route, Link, browserHistory, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
 
-import { store } from './reducers/utility/store';
+import { store } from './store/configureStore';
 import { DashboardPageContainer } from './components/containers/DashboardPageContainer';
 
 import { TrackFoodPage } from './components/app/TrackFoodPage';
