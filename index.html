@@ -1,0 +1,337 @@
+
+<!DOCTYPE html>
+<html >
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>Local Code - Calorie Counter: React</title>
+</head>
+
+<body translate="no" >
+
+  <div id="root"></div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js'></script>
+<script src='https://unpkg.com/react-router/umd/ReactRouter.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react-redux/4.4.6/react-redux.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+
+    <script type="text/babel">
+    const { Router, Route, Link, browserHistory, hashHistory } = ReactRouter;
+const { createStore, combineReducers, compose } = Redux;
+const { connect, Provider } = ReactRedux;
+
+// Utility components
+
+class Page extends React.Component {
+  render() {
+    return (
+      <div className="page">
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
+class Header extends React.Component {
+  render() {
+    return (
+      <div className="header">{this.props.children}</div>
+    );
+  }
+}
+
+class Content extends React.Component {
+  render() {
+    return (
+      <div className="content">{this.props.children}</div>
+    );
+  }
+}
+
+class Footer extends React.Component {
+  render() {
+    return (
+      <div className="footer">{this.props.children}</div>
+    );
+  }
+}
+
+class FormPage extends React.Component {
+  render() {
+    return (<Page></Page>);
+  }
+}
+
+class StatusPage extends React.Component {
+  render() {
+    return (<Page></Page>);
+  }
+}
+
+class Icon extends React.Component {
+  render() {
+    return (
+      <i className={this.props.name} />
+    );
+  }
+}
+
+class Button extends React.Component {
+  render() {
+    return (
+      <div className="button">
+        <Link to={this.props.action}>
+          <Icon name={this.props.icon} />
+          <span>{this.props.children}</span>
+        </Link>
+      </div>
+    );
+  }
+}
+
+class Row extends React.Component {
+  render() {
+    return (
+      <div className="row">
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
+class Col extends React.Component {
+  render() {
+    return (
+      <div className="col">
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
+// Application components
+
+class DashboardPage extends React.Component {
+  render() {
+    const { remainingBalance } = this.props;
+
+    return (
+      <Page>
+        <Header>
+          Remaining balance: {remainingBalance} kCal
+        </Header>
+
+        <Content>
+          <Row>
+            <Col><Button icon="workout" action="/track/workout">Workout</Button></Col>
+            <Col><Button icon="food" action="/track/food">Food</Button></Col>
+          </Row>
+
+          <Row>
+            <Col><Button icon="scales" action="/track/weight">Weight</Button></Col>
+          </Row>
+        </Content>
+
+        <Footer>
+          <Row>
+            <Col><Button icon="list" action="/status/history">History</Button></Col>
+            <Col><Button icon="chart" action="/status/charts">Charts</Button></Col>
+            <Col><Button icon="cog" action="/settings">Settings</Button></Col>
+          </Row>
+        </Footer>
+      </Page>
+    );
+  }
+}
+
+DashboardPage.propTypes = {
+  remainingBalance: React.PropTypes.number
+};
+
+class TrackFoodPage extends React.Component {
+  render() {
+    return (<FormPage></FormPage>);
+  }
+}
+
+class TrackWorkoutPage extends React.Component {
+  render() {
+    return (<FormPage></FormPage>);
+  }
+}
+
+class TrackWeightPage extends React.Component {
+  render() {
+    return (<FormPage></FormPage>);
+  }
+}
+
+class HistoryPage extends React.Component {
+  render() {
+    const { items } = this.props;
+
+    return (<StatusPage></StatusPage>);
+  }
+}
+
+HistoryPage.propTypes = {
+  items: React.PropTypes.array.isRequired
+};
+
+class ChartsPage extends React.Component {
+  render() {
+    const { items } = this.props;
+
+    return (<StatusPage></StatusPage>);
+  }
+}
+
+ChartsPage.propTypes = {
+  items: React.PropTypes.array.isRequired
+};
+
+class SettingsPage extends React.Component {
+  render() {
+    const { currentSettings, availableSettings } = this.props;
+
+    return (<FormPage></FormPage>);
+  }
+}
+
+SettingsPage.propTypes = {
+  currentSettings: React.PropTypes.object.isRequired,
+  availableSettings: React.PropTypes.object.isRequired
+};
+
+// Utility functions
+
+const getDailyBalance = function (state) {
+  const { settings, weightData } = state;
+  const { dateOfBirth, gender, height, excerciseLevel } = settings;
+
+  const lastWeight = weightData.length > 0 ? weightData[weightData.length - 1].weight : 0;
+  const age = moment().diff(moment(dateOfBirth), 'years');
+
+  const BMR = {
+    'MALE': 66.47 + (13.75 * lastWeight) + (5.0 * height) - (6.75 * age),
+    'FEMALE': 665.09 + (9.56 * lastWeight) + (1.84 * height) - (4.67 * age)
+  }[gender];
+
+  const EXCERCISE_LEVEL_COEFFICIENT = {
+    0: 1.2,
+    1: 1.375,
+    2: 1.55,
+    3: 1.725,
+    4: 1.9
+  }[excerciseLevel];
+
+  return parseInt(BMR * EXCERCISE_LEVEL_COEFFICIENT);
+};
+
+const getRemainingBalance = function (state) {
+  console.log('getRemainingBalance:', state);
+
+  return state.items
+    .filter((e) => moment(e.createdAt).isBetween(moment().startOf('day'), moment().endOf('day')))
+    .reduce((acc, e) => { return acc - { 'NUTRITION': -1, 'WORKOUT': 1 }[e.type] * e.calories; }, getDailyBalance(state));
+};
+
+// Redux configuration
+
+const initialState = {
+  items: [],
+  weightData: [],
+  settings: {
+    dateOfBirth: '1992-06-21',
+    gender: 'MALE',
+    height: 178,
+    excerciseLevel: 1
+  }
+};
+
+const ACTION = {
+  ADD_NUTRITION: 'ADD_NUTRITION',
+  ADD_WORKOUT: 'ADD_WORKOUT',
+  TRACK_WEIGHT: 'TRACK_WEIGHT',
+  UPDATE_SETTINGS: 'UPDATE_SETTINGS',
+};
+
+const itemsReducer = function (state = initialState.items, action) {
+  switch (action.type) {
+    case ACTION.ADD_WORKOUT:
+      return [ ...state, { createdAt: moment(), type: 'WORKOUT', ...action.payload } ];
+    break;
+
+    case ACTION.ADD_NUTRITION:
+      return [ ...state, { createdAt: moment(), type: 'NUTRITION', ...action.payload } ];
+    break;
+  }
+
+  return state;
+};
+
+const weightReducer = function (state = initialState.weightData, action) {
+  switch (action.type) {
+    case ACTION.TRACK_WEIGHT:
+      return [ ...state, { createdAt: moment(), weight: action.payload.weight } ];
+  }
+
+  return state;
+};
+
+const settingsReducer = function (state = initialState.settings, action) {
+  switch (action.type) {
+    case ACTION.UPDATE_SETTINGS:
+      return { ...state, settings: action.payload };
+  }
+
+  return state;
+};
+
+const rootReducer = combineReducers({
+  items: itemsReducer,
+  weightData: weightReducer,
+  settings: settingsReducer
+});
+
+window.store = createStore(rootReducer);
+
+// Redux initialization
+
+const DashboardPageContainer = connect((state) => { return { remainingBalance: getRemainingBalance(state) }; })(DashboardPage);
+
+// Application initialization
+
+ReactDOM.render((
+  <Provider store={store}>
+    <Router history={hashHistory}>
+      <Route path="/" component={DashboardPageContainer} />
+
+      <Route path="/track">
+        <Route path="/food" component={TrackFoodPage} />
+        <Route path="/workout" component={TrackWorkoutPage} />
+        <Route path="/weight" component={TrackWeightPage} />
+      </Route>
+
+      <Route path="/status">
+        <Route path="history" component={HistoryPage} />
+        <Route path="charts" component={ChartsPage} />
+      </Route>
+
+      <Route path="settings" component={SettingsPage} />
+    </Router>
+  </Provider>
+), document.getElementById('root'));
+  </script>
+
+
+
+
+</body>
+</html>
