@@ -21,7 +21,7 @@ Use any of the web servers available to host the application. For instance, you 
     npm install -g simplehttpserver
     # or
     yarn global add simplehttpserver
-    # and then, in the root project directory
+    # and then, in the `build` project' directory
     simplehttpserver
 
 Then go to your browser and check out application. In case with `simplehttpserver`, it's just [http://localhost:8000](http://localhost:8000)

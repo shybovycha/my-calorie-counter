@@ -13,25 +13,31 @@ import { HistoryPage } from './components/app/HistoryPage';
 import { ChartsPage } from './components/app/ChartsPage';
 import { SettingsPage } from './components/app/SettingsPage';
 
-window.store = store;
+(function (handler) {
+  if (document.readyState != 'loading')
+    handler(); else
+      document.addEventListener('DOMContentLoaded', handler);
+})(function () {
+  window.store = store;
 
-ReactDOM.render((
-  <Provider store={store}>
-    <Router history={hashHistory}>
-      <Route path="/" component={DashboardPageContainer} />
+  ReactDOM.render((
+    <Provider store={store}>
+      <Router history={hashHistory}>
+        <Route path="/" component={DashboardPageContainer} />
 
-      <Route path="track">
-        <Route path="food" component={TrackFoodPage} />
-        <Route path="workout" component={TrackWorkoutPage} />
-        <Route path="weight" component={TrackWeightPage} />
-      </Route>
+        <Route path="track">
+          <Route path="food" component={TrackFoodPage} />
+          <Route path="workout" component={TrackWorkoutPage} />
+          <Route path="weight" component={TrackWeightPage} />
+        </Route>
 
-      <Route path="status">
-        <Route path="history" component={HistoryPage} />
-        <Route path="charts" component={ChartsPage} />
-      </Route>
+        <Route path="status">
+          <Route path="history" component={HistoryPage} />
+          <Route path="charts" component={ChartsPage} />
+        </Route>
 
-      <Route path="settings" component={SettingsPage} />
-    </Router>
-  </Provider>
-), document.getElementById('root'));
+        <Route path="settings" component={SettingsPage} />
+      </Router>
+    </Provider>
+  ), document.getElementById('root'));
+});
