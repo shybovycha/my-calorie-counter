@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router';
+import PropTypes from 'prop-types';
+
+import { Link } from 'react-router-dom';
 
 export class Icon extends React.Component {
   render() {
@@ -10,7 +12,7 @@ export class Icon extends React.Component {
 }
 
 Icon.propTypes = {
-  name: React.PropTypes.string.isRequired
+  name: PropTypes.string.isRequired
 };
 
 export class Button extends React.Component {

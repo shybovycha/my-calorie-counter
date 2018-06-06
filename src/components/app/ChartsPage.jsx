@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { StatusPage } from '../utility/StatusPage';
+import { StatusPage } from '../utility/StatusPage.jsx';
 
 export class ChartsPage extends React.Component {
   render() {
@@ -11,5 +12,5 @@ export class ChartsPage extends React.Component {
 }
 
 ChartsPage.propTypes = {
-  items: React.PropTypes.array
+  items: PropTypes.array
 };

@@ -1,16 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { FormPage } from '../utility/FormPage';
+import { FormPage } from '../utility/FormPage.jsx';
 
 export class SettingsPage extends React.Component {
   render() {
     const { currentSettings, availableSettings } = this.props;
 
-    return (<FormPage></FormPage>);
+    return (<div>Hello, settings</div>);
   }
 }
 
 SettingsPage.propTypes = {
-  currentSettings: React.PropTypes.object,
-  availableSettings: React.PropTypes.object
+  currentSettings: PropTypes.object,
+  availableSettings: PropTypes.object
 };

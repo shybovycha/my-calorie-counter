@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { Page, Header, Content, Footer } from '../utility/Page';
-import { Button } from '../utility/Ui';
-import { Row, Col } from '../utility/Grid';
+import { Page, Header, Content, Footer } from '../utility/Page.jsx';
+import { Button } from '../utility/Ui.jsx';
+import { Row, Col } from '../utility/Grid.jsx';
 
 export class DashboardPage extends React.Component {
   render() {
@@ -38,5 +39,5 @@ export class DashboardPage extends React.Component {
 }
 
 DashboardPage.propTypes = {
-  remainingBalance: React.PropTypes.number
+  remainingBalance: PropTypes.number
 };

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { FormPage } from '../utility/FormPage';
+import { FormPage } from '../utility/FormPage.jsx';
 
 export class TrackFoodPage extends React.Component {
   render() {
-    return (<FormPage></FormPage>);
+    return (<div>Hello, track nutrition page!</div>);
   }
 }

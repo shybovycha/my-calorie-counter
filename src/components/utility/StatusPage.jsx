@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Page } from './Page';
+import { Page } from './Page.jsx';
 
 export class StatusPage extends React.Component {
   render() {

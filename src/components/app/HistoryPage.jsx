@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { StatusPage } from '../utility/StatusPage';
+import { StatusPage } from '../utility/StatusPage.jsx';
 
 export class HistoryPage extends React.Component {
   render() {
@@ -11,5 +12,5 @@ export class HistoryPage extends React.Component {
 }
 
 HistoryPage.propTypes = {
-  items: React.PropTypes.array
+  items: PropTypes.array
 };
