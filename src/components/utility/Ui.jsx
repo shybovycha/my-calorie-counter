@@ -1,29 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
-export class Icon extends React.Component {
-  render() {
-    return (
-      <i className={this.props.name} />
-    );
-  }
-}
+export const Icon = ({ name }) => (
+  <i className={name} />
+);
 
-Icon.propTypes = {
-  name: PropTypes.string.isRequired
-};
-
-export class Button extends React.Component {
-  render() {
-    return (
-      <div className="button">
-        <Link to={this.props.action}>
-          <Icon name={this.props.icon} />
-          <span>{this.props.children}</span>
-        </Link>
-      </div>
-    );
-  }
-}
+export const Button = ({ action, icon, children }) => (
+  <div className="button">
+    <Link to={action}>
+      <Icon name={icon} />
+      <span>{children}</span>
+    </Link>
+  </div>
+);

@@ -5,8 +5,8 @@
   "author": "Artem Shubovych <shybovycha@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "less": "^3.0.4",
     "moment": "^2.22.2",
-    "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",
@@ -29,7 +29,8 @@
     "webpack-cli": "^3.0.2"
   },
   "scripts": {
-    "build": "./node_modules/.bin/webpack",
-    "serve": "cp src/index.html dist && ./node_modules/.bin/simplehttpserver dist"
+    "build": "./node_modules/.bin/webpack --mode production",
+    "serve": "cp src/index.html dist && ./node_modules/.bin/simplehttpserver dist",
+    "watch": "./node_modules/.bin/webpack --mode development --watch"
   }
 }

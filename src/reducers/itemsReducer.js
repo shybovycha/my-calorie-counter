@@ -2,7 +2,7 @@ import moment from 'moment';
 
 import { initialState, ACTION } from '../constants/index';
 
-export const itemsReducer = function (state = initialState.items, action) {
+export const itemsReducer = (state = initialState.items, action) => {
   switch (action.type) {
     case ACTION.ADD_WORKOUT:
       return [ ...state, { createdAt: moment(), type: 'WORKOUT', ...action.payload } ];

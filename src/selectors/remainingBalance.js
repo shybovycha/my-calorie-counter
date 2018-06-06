@@ -1,8 +1,7 @@
 import { createSelector } from 'reselect';
 import moment from 'moment';
 
-const getDailyBalance = function (state) {
-  const { settings, weightData } = state;
+const getDailyBalance = ({ settings, weightData }) => {
   const { dateOfBirth, gender, height, excerciseLevel } = settings;
 
   const lastWeight = weightData.length > 0 ? weightData[weightData.length - 1].weight : 0;

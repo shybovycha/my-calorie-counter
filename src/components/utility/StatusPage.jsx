@@ -2,12 +2,8 @@ import React from 'react';
 
 import { Page } from './Page.jsx';
 
-export class StatusPage extends React.Component {
-  render() {
-    return (
-      <Page>
-        {this.props.children}
-      </Page>
-    );
-  }
-}
+export const StatusPage = ({ children }) => (
+  <Page>
+    {children}
+  </Page>
+);

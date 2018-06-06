@@ -1,21 +1,15 @@
 import React from 'react';
 
-export class Row extends React.Component {
-  render() {
-    return (
-      <div className="row">
-        {this.props.children}
-      </div>
-    );
-  }
-}
+import '../../stylesheets/grid.css';
 
-export class Col extends React.Component {
-  render() {
-    return (
-      <div className="col">
-        {this.props.children}
-      </div>
-    );
-  }
-}
+export const Row = ({ children }) => (
+  <div className="row">
+    {children}
+  </div>
+);
+
+export const Col = ({ children }) => (
+  <div className="col">
+    {children}
+  </div>
+);
