@@ -22,6 +22,11 @@
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-react": "^7.9.1",
     "less-loader": "^4.1.0",
     "simplehttpserver": "^0.1.1",
     "style-loader": "^0.21.0",
@@ -29,8 +34,10 @@
     "webpack-cli": "^3.0.2"
   },
   "scripts": {
-    "build": "./node_modules/.bin/webpack --mode production",
-    "serve": "cp src/index.html dist && ./node_modules/.bin/simplehttpserver dist",
-    "watch": "./node_modules/.bin/webpack --mode development --watch"
+    "serve": "./node_modules/.bin/simplehttpserver dist",
+    "build": "cp src/index.html dist && yarn lint && ./node_modules/.bin/webpack --mode production",
+    "lint": "./node_modules/.bin/eslint --ext .jsx --ext .js .",
+    "build-dev": "cp src/index.html dist && yarn lint && ./node_modules/.bin/webpack --mode development",
+    "build-watch": "cp src/index.html dist && yarn lint && ./node_modules/.bin/webpack --mode development --watch"
   }
 }

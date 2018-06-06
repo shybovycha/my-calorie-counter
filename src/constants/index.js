@@ -12,6 +12,6 @@ export const initialState = {
     dateOfBirth: '1992-06-21',
     gender: 'MALE',
     height: 178,
-    excerciseLevel: 1
-  }
+    excerciseLevel: 1,
+  },
 };

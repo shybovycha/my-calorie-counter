@@ -1,5 +1,5 @@
 import React from 'react';
 
-import { FormPage } from '../utility/FormPage.jsx';
+import FormPage from '../utility/FormPage.jsx';
 
-export const SettingsPage = ({ currentSettings, availableSettings }) => (<div>Hello, settings</div>);
+export default () => (<FormPage></FormPage>);

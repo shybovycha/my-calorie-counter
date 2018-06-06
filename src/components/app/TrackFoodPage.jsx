@@ -1,5 +1,5 @@
 import React from 'react';
 
-import { FormPage } from '../utility/FormPage.jsx';
+import FormPage from '../utility/FormPage.jsx';
 
-export const TrackFoodPage = () => (<div>Hello, track nutrition page!</div>);
+export default () => (<FormPage>Hello, track nutrition page!</FormPage>);

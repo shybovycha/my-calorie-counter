@@ -1,5 +1,5 @@
 import React from 'react';
 
-import { StatusPage } from '../utility/StatusPage.jsx';
+import StatusPage from '../utility/StatusPage.jsx';
 
-export const HistoryPage = ({ items }) => (<StatusPage></StatusPage>);
+export default ({ items }) => (<StatusPage items={items}></StatusPage>);

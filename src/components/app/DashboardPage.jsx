@@ -4,7 +4,7 @@ import { Page, Header, Content, Footer } from '../utility/Page.jsx';
 import { Button } from '../utility/Ui.jsx';
 import { Row, Col } from '../utility/Grid.jsx';
 
-export const DashboardPage = ({ remainingBalance }) => (
+export default ({ remainingBalance }) => (
   <Page>
     <Header>
       Remaining balance: {remainingBalance} kCal

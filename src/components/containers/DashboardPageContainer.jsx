@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
-import { getRemainingBalance } from '../../selectors/remainingBalance.js';
-import { DashboardPage } from '../app/DashboardPage.jsx';
+import getRemainingBalance from '../../selectors/remainingBalance';
+import DashboardPage from '../app/DashboardPage.jsx';
 
 const mapStateToProps = state => ({
-  remainingBalance: getRemainingBalance(state)
+  remainingBalance: getRemainingBalance(state),
 });
 
-export const DashboardPageContainer = connect(mapStateToProps)(DashboardPage);
+export default connect(mapStateToProps)(DashboardPage);
