@@ -1,27 +1,18 @@
 # Calorie Counter
 
-This is a test project, aimed to check how React, Redux, Reselect, React-Router and other play together.
+This is my sample project, aimed to get a hands-on experience on React, Redux, Reselect, React-Router and others.
 
 ## Installation
 
-Either use `npm` or `yarn` _(I used latter)_ to install the dependencies:
+Use `npm`. Don't use `yarn` _(yes, I said that allegedly)_:
 
     npm install
-    # or
+
+    # this won't work correctly for parcel bundler:
     yarn install
 
-Then use `gulp` to build the application bundles:
+Then use `npm run-script build` to build the front-end of an application.
 
-     gulp
-     # or, if Gulp is not installed globally on your machine
-     ./node_modules/.bin/gulp
+To run the server, use `npm start`.
 
-Use any of the web servers available to host the application. For instance, you could use `simplehttpserver` from NPM:
-
-    npm install -g simplehttpserver
-    # or
-    yarn global add simplehttpserver
-    # and then, in the `build` project' directory
-    simplehttpserver
-
-Then go to your browser and check out application. In case with `simplehttpserver`, it's just [http://localhost:8000](http://localhost:8000)
+Then go to [http://localhost:3000](http://localhost:3000) in your browser to check out the application.

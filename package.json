@@ -1,7 +1,7 @@
 {
   "name": "redux_test3",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server/index.js",
   "author": "Artem Shubovych <shybovycha@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -28,7 +28,6 @@
     "parcel-bundler": "^1.8.1"
   },
   "scripts": {
-    "serve": "node server/index.js",
     "build": "./node_modules/.bin/parcel build client/index.html --out-dir server/public"
   }
 }
