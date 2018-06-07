@@ -29,6 +29,6 @@
   },
   "scripts": {
     "serve": "node server/index.js",
-    "build": "./node_modules/.bin/parcel server/public/index.html"
+    "build": "./node_modules/.bin/parcel build client/index.html --out-dir server/public"
   }
 }
