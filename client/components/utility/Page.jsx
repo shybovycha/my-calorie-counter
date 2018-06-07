@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../../stylesheets/page.less';
+
 export const Page = ({ children }) => (
   <div className="page">
     {children}
