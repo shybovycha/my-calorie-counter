@@ -15,19 +15,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['es2017', 'react'],
-              plugins: ['babel-plugin-transform-object-rest-spread'],
-              cacheDirectory: true,
-            },
-          },
-          {
-            loader: 'eslint-loader',
-          },
-        ],
+        use: ['babel-loader', 'eslint-loader'],
       },
       {
         test: /\.less$/,
