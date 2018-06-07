@@ -5,6 +5,8 @@
   "author": "Artem Shubovych <shybovycha@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
     "less": "^3.0.4",
     "moment": "^2.22.2",
     "react": "^16.4.0",
