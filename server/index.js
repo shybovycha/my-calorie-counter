@@ -5,10 +5,7 @@ const nutritionApi = require('./routes/nutrition');
 
 const app = express();
 
-app.set('view engine', 'ejs');
-app.set('views', path.resolve(__dirname, 'views'));
-
-app.use(express.static(path.resolve(__dirname, '..', 'dist')));
+app.use(express.static(path.resolve(__dirname, 'public')));
 
 app.use('/nutrition', nutritionApi);
 
