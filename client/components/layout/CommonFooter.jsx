@@ -1,4 +1,4 @@
-import React from 'react';
+import { h } from 'preact';
 
 import { Footer } from '../utility/Page.jsx';
 import { Button } from '../utility/Ui.jsx';

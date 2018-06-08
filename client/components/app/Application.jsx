@@ -1,7 +1,9 @@
-import React from 'react';
+import { h } from 'preact';
 
-import { HashRouter as Router, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { HashRouter as Router } from 'preact-router';
+import { createHashHistory } from 'history/createHashHistory';
+
+import { Provider } from 'preact-redux';
 
 import store from '../../store/configureStore';
 
@@ -20,21 +22,21 @@ import { Page, Content } from '../utility/Page.jsx';
 
 export default () => (
   <Provider store={store}>
-    <Router>
+    <Router history={createHashHistory()}>
       <Page>
         <CommonHeaderContainer />
 
         <Content>
-          <Route exact path="/" component={DashboardPage} />
+          <DashboardPage path="/" />
 
-          <Route path="/track/food" component={TrackFoodPage} />
-          <Route path="/track/workout" component={TrackWorkoutPage} />
-          <Route path="/track/weight" component={TrackWeightPage} />
+          <TrackFoodPage path="/track/food" />
+          <TrackWorkoutPage path="/track/workout" />
+          <TrackWeightPage path="/track/weight" />
 
-          <Route path="/status/history" component={HistoryPage} />
-          <Route path="/status/charts" component={ChartsPage} />
+          <HistoryPage path="/status/history" />
+          <ChartsPage path="/status/charts" />
 
-          <Route path="/settings" component={SettingsPage} />
+          <SettingsPage path="/settings" />
         </Content>
 
         <CommonFooter />

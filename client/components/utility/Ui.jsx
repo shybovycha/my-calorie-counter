@@ -1,6 +1,6 @@
-import React from 'react';
+import { h } from 'preact';
 
-import { Link } from 'react-router-dom';
+import { Link } from 'preact-router';
 
 export const Icon = ({ name }) => (
   <i className={name} />

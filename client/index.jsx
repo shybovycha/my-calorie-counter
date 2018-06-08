@@ -1,8 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { h, render } from 'preact';
 
 import Application from './components/app/Application.jsx';
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(<Application />, document.getElementById('root'));
+  render(<Application />, document.getElementById('root'));
 });

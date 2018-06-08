@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { connect } from 'preact-redux';
 
 import getRemainingBalance from '../../selectors/remainingBalance';
 import CommonHeader from '../layout/CommonHeader.jsx';

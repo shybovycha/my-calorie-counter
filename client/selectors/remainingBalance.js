@@ -1,5 +1,11 @@
 import { createSelector } from 'reselect';
-import moment from 'moment';
+
+import { differenceInYears } from 'date-fns/difference_in_years';
+import { parse } from 'date-fns/parse';
+import { isAfter } from 'date-fns/is_after';
+import { isBefore } from 'date-fns/is_before';
+import { startOfDay } from 'date-fns/start_of_day';
+import { endOfDay } from 'date-fns/end_of_day';
 
 const getDailyBalance = ({ settings, weightData }) => {
   const {
@@ -7,7 +13,7 @@ const getDailyBalance = ({ settings, weightData }) => {
   } = settings;
 
   const lastWeight = weightData.length > 0 ? weightData[weightData.length - 1].weight : 0;
-  const age = moment().diff(moment(dateOfBirth), 'years');
+  const age = differenceInYears(new Date(), parse(dateOfBirth));
 
   const BMR = {
     MALE: (66.47 + (13.75 * lastWeight) + (5.0 * height)) - (6.75 * age),
@@ -25,7 +31,15 @@ const getDailyBalance = ({ settings, weightData }) => {
   return parseInt(BMR * EXCERCISE_LEVEL_COEFFICIENT, 10);
 };
 
-const getTodayItems = state => state.items.filter(e => moment(e.createdAt).isBetween(moment().startOf('day'), moment().endOf('day')));
+const getTodayItems = state => state.items
+  .filter((e) => {
+    const createdAt = parse(e.createdAt);
+    const today = new Date();
+    const startOfToday = startOfDay(today);
+    const endOfToday = endOfDay(today);
+
+    return isAfter(createdAt, startOfToday) && isBefore(createdAt, endOfToday);
+  });
 
 const getTodayBalance = state => getDailyBalance(state);
 
