@@ -1,6 +1,6 @@
 {
-  "name": "redux_test3",
-  "version": "1.0.0",
+  "name": "my-calorie-counter",
+  "version": "0.1.0",
   "author": "Artem Shubovych <shybovycha@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -27,7 +27,7 @@
     "parcel-bundler": "^1.8.1"
   },
   "scripts": {
-    "build": "parcel build client/index.html --out-dir server/public",
+    "postinstall": "parcel build client/index.html --out-dir server/public",
     "start": "parcel build client/index.html --out-dir server/public && node server/index.js"
   }
 }
