@@ -18,6 +18,8 @@ import CommonFooter from '../layout/CommonFooter.jsx';
 
 import { Page, Content } from '../utility/Page.jsx';
 
+import '../../stylesheets/application.less';
+
 export default () => (
   <Provider store={store}>
     <Router>

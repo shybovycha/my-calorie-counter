@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
         .field('id')
         .field('calories')
         .field('name')
-        .from('excercises')
+        .from('ingridients')
         .toString();
 
       return client.query(query)
@@ -34,7 +34,7 @@ router.get('/:id', (req, res) => {
         .field('id')
         .field('calories')
         .field('name')
-        .from('excercises')
+        .from('ingridients')
         .where('id = ?', excerciseId)
         .toString();
 
@@ -61,7 +61,7 @@ router.post('/', (req, res) => {
       const { calories, name } = req.body;
 
       const query = squel.insert()
-        .into('excercises')
+        .into('ingridients')
         .set('calories', calories)
         .set('name', name)
         .toString();
@@ -84,7 +84,7 @@ router.post('/:id', (req, res) => {
       const { calories, name } = req.body;
 
       const query = squel.update()
-        .table('excercises')
+        .table('ingridients')
         .set('calories', calories)
         .set('name', name)
         .where('id = ?', excerciseId)
