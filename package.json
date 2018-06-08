@@ -27,7 +27,7 @@
     "parcel-bundler": "^1.8.1"
   },
   "scripts": {
-    "build": "./node_modules/.bin/parcel build client/index.html --out-dir server/public",
-    "start": "./node_modules/.bin/parcel build client/index.html --out-dir server/public && node server/index.js"
+    "build": "parcel build client/index.html --out-dir server/public",
+    "start": "parcel build client/index.html --out-dir server/public && node server/index.js"
   }
 }
