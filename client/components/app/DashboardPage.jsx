@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Page } from '../utility/Page.jsx';
-import { Button } from '../utility/Ui.jsx';
-import { Row, Col } from '../utility/Grid.jsx';
+import { Page } from '../utility/Page';
+import { Button } from '../utility/Ui';
+import { Row, Col } from '../utility/Grid';
 
 export default () => (
   <Page>

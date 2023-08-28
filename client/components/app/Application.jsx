@@ -1,44 +1,55 @@
 import React from 'react';
 
-import { HashRouter as Router, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Outlet,
+  Route,
+  RouterProvider,
+} from 'react-router-dom';
 
-import store from '../../store/configureStore';
+import DashboardPage from './DashboardPage';
+import TrackFoodPage from './TrackFoodPage';
+import TrackWorkoutPage from './TrackWorkoutPage';
+import TrackWeightPage from './TrackWeightPage';
+import HistoryPage from './HistoryPage';
+import ChartsPage from './ChartsPage';
+import SettingsPage from './SettingsPage';
 
-import DashboardPage from './DashboardPage.jsx';
-import TrackFoodPage from './TrackFoodPage.jsx';
-import TrackWorkoutPage from './TrackWorkoutPage.jsx';
-import TrackWeightPage from './TrackWeightPage.jsx';
-import HistoryPage from './HistoryPage.jsx';
-import ChartsPage from './ChartsPage.jsx';
-import SettingsPage from './SettingsPage.jsx';
+import CommonFooter from '../layout/CommonFooter';
+import CommonHeader from '../layout/CommonHeader';
 
-import CommonHeaderContainer from '../containers/CommonHeaderContainer.jsx';
-import CommonFooter from '../layout/CommonFooter.jsx';
+import { Page, Content } from '../utility/Page';
 
-import { Page, Content } from '../utility/Page.jsx';
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route element={
+      <Page>
+        <Content>
+          <CommonHeader/>
+
+          <Outlet />
+
+          <CommonFooter />
+        </Content>
+      </Page>
+    }>
+      <Route exact path="/" element={<DashboardPage />} />
+
+      <Route path="/track/food" element={<TrackFoodPage />} />
+      <Route path="/track/workout" element={<TrackWorkoutPage />} />
+      <Route path="/track/weight" element={<TrackWeightPage />} />
+
+      <Route path="/status/history" element={<HistoryPage />} />
+      <Route path="/status/charts" element={<ChartsPage />} />
+
+      <Route path="/settings" element={<SettingsPage />} />
+    </Route>
+  )
+)
 
 export default () => (
-  <Provider store={store}>
-    <Router>
-      <Page>
-        <CommonHeaderContainer />
-
-        <Content>
-          <Route exact path="/" component={DashboardPage} />
-
-          <Route path="/track/food" component={TrackFoodPage} />
-          <Route path="/track/workout" component={TrackWorkoutPage} />
-          <Route path="/track/weight" component={TrackWeightPage} />
-
-          <Route path="/status/history" component={HistoryPage} />
-          <Route path="/status/charts" component={ChartsPage} />
-
-          <Route path="/settings" component={SettingsPage} />
-        </Content>
-
-        <CommonFooter />
-      </Page>
-    </Router>
-  </Provider>
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
 );

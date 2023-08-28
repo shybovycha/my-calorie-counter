@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../../stylesheets/grid.less';
+import '../../stylesheets/grid.css';
 
 export const Row = ({ children }) => (
   <div className="row">

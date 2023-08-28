@@ -2,17 +2,17 @@ import React from 'react';
 
 import { HashRouter as Router, Route } from 'react-router-dom';
 
-import { Page, Header, Content, Footer } from '../utility/Page.jsx';
-import { Col, Row } from '../utility/Grid.jsx';
-import { Button } from '../utility/Ui.jsx';
+import { Page, Header, Content, Footer } from '../utility/Page';
+import { Col, Row } from '../utility/Grid';
+import { Button } from '../utility/Ui';
 
-import DashboardPage from './DashboardPage.jsx';
-import TrackFoodPage from './TrackFoodPage.jsx';
-import TrackWorkoutPage from './TrackWorkoutPage.jsx';
-import TrackWeightPage from './TrackWeightPage.jsx';
-import HistoryPage from './HistoryPage.jsx';
-import ChartsPage from './ChartsPage.jsx';
-import SettingsPage from './SettingsPage.jsx';
+import DashboardPage from './DashboardPage';
+import TrackFoodPage from './TrackFoodPage';
+import TrackWorkoutPage from './TrackWorkoutPage';
+import TrackWeightPage from './TrackWeightPage';
+import HistoryPage from './HistoryPage';
+import ChartsPage from './ChartsPage';
+import SettingsPage from './SettingsPage';
 
 export default ({ remainingBalance }) => (
   <Router>
