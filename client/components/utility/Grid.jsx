@@ -1,15 +1,18 @@
 import React from 'react';
 
-import '../../stylesheets/grid.css';
+import {
+  row as rowClass,
+  col as colClass
+} from '../../stylesheets/grid.module.css';
 
 export const Row = ({ children }) => (
-  <div className="row">
+  <div className={rowClass}>
     {children}
   </div>
 );
 
 export const Col = ({ children }) => (
-  <div className="col">
+  <div className={colClass}>
     {children}
   </div>
 );

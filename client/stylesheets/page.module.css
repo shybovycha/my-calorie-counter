@@ -1,0 +1,28 @@
+.page {
+    display: grid;
+    grid-template: auto 1fr auto / 1fr;
+    grid-template-areas:
+        'header'
+        'content'
+        'footer';
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        grid-area: 'header';
+    }
+
+    .content {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        grid-area: 'content';
+    }
+
+    .footer {
+        display: flex;
+        flex-direction: row;
+        background-color: #bebebe;
+        grid-area: 'footer';
+    }
+}

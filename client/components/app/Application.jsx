@@ -46,13 +46,13 @@ const router = createBrowserRouter(
     <Route element={
       <Providers>
         <Page>
+          <CommonHeader/>
+
           <Content>
-            <CommonHeader/>
-
             <Outlet />
-
-            <CommonFooter />
           </Content>
+
+          <CommonFooter />
         </Page>
       </Providers>
     }>
@@ -68,7 +68,7 @@ const router = createBrowserRouter(
       <Route path="/settings" element={<SettingsPage />} />
     </Route>
   )
-)
+);
 
 export default () => (
   <React.StrictMode>

@@ -1,21 +1,26 @@
 import React from 'react';
 
-import '../../stylesheets/page.css';
+import {
+  page as pageClass,
+  content as contentClass,
+  header as headerClass,
+  footer as footerClass
+} from '../../stylesheets/page.module.css';
 
 export const Page = ({ children }) => (
-  <div className="page">
+  <div className={pageClass}>
     {children}
   </div>
 );
 
 export const Content = ({ children }) => (
-  <div className="content">{children}</div>
+  <div className={contentClass}>{children}</div>
 );
 
 export const Header = ({ children }) => (
-  <div className="header">{children}</div>
+  <div className={headerClass}>{children}</div>
 );
 
 export const Footer = ({ children }) => (
-  <div className="footer">{children}</div>
+  <div className={footerClass}>{children}</div>
 );

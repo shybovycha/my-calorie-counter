@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Footer } from '../utility/Page';
-import { Button } from '../utility/Ui';
+import { Button } from '../utility/Controls';
 import { Col, Row } from '../utility/Grid';
 
 export default () => (
