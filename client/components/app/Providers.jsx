@@ -10,15 +10,15 @@ import { LoadingStateProvider } from '../../contexts/loadingStateContext';
 export const Providers = ({ children }) => (
   <LoadingStateProvider>
     <GeneralInformationProvider>
-        <MeasurementsProvider>
+      <MeasurementsProvider>
         <ExerciseProvider>
             <NutritionProvider>
-            <DailyBalanceProvider>
+              <DailyBalanceProvider>
                 {children}
-            </DailyBalanceProvider>
+              </DailyBalanceProvider>
             </NutritionProvider>
         </ExerciseProvider>
-        </MeasurementsProvider>
+      </MeasurementsProvider>
     </GeneralInformationProvider>
   </LoadingStateProvider>
 );
