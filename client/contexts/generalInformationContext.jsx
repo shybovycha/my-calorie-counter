@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useContext, useLayoutEffect, useMemo, useState } from 'react';
+import { useLoadingStateContext } from './loadingStateContext';
 
 const initialValue = {
     gender: 'MALE',
@@ -12,12 +13,19 @@ const GeneralInformationContext = createContext(initialValue);
 export const useGeneralInformationContext = () => useContext(GeneralInformationContext);
 
 export const GeneralInformationProvider = ({ children }) => {
+    const { componentStartedLoading, componentFinishedLoading } = useLoadingStateContext();
+
     const [generalInformation, setGeneralInformation] = useState(initialValue);
 
     useLayoutEffect(() => {
+        const componentName = 'GeneralInformation';
+
+        componentStartedLoading(componentName);
+
         fetch('/general-information', { headers: { 'Content-Type': 'application/json' } })
             .then(response => response.json())
-            .then(data => setGeneralInformation(data));
+            .then(data => setGeneralInformation(data))
+            .then(() => componentFinishedLoading(componentName));
     }, []);
 
     const updateGeneralInformation = useCallback(({ gender, height, dateOfBirth, exerciseLevel }) => {

@@ -20,40 +20,49 @@ import CommonFooter from '../layout/CommonFooter';
 import CommonHeader from '../layout/CommonHeader';
 
 import { Page, Content } from '../utility/Page';
+import { Providers } from './Providers';
 
-import { DailyBalanceProvider } from '../../contexts/dailyBalanceContext';
-import { GeneralInformationProvider } from '../../contexts/generalInformationContext';
-import { MeasurementsProvider } from '../../contexts/measurementsContext';
-import { ExerciseProvider } from '../../contexts/exerciseContext';
-import { NutritionProvider } from '../../contexts/nutritionContext';
+import { useLoadingStateContext } from '../../contexts/loadingStateContext';
 
-const Providers = ({ children }) => (
-  <GeneralInformationProvider>
-    <MeasurementsProvider>
-      <ExerciseProvider>
-        <NutritionProvider>
-          <DailyBalanceProvider>
-            {children}
-          </DailyBalanceProvider>
-        </NutritionProvider>
-      </ExerciseProvider>
-    </MeasurementsProvider>
-  </GeneralInformationProvider>
+import { spinner as spinnerClass } from '../../stylesheets/page.module.css';
+
+const Spinner = () => (
+  <div className={spinnerClass}>
+    Loading...
+  </div>
 );
+
+const Layout = () => {
+  const { isLoading } = useLoadingStateContext();
+
+  if (isLoading) {
+    return (
+      <Page>
+        <Content>
+          <Spinner />
+        </Content>
+    </Page>
+    );
+  }
+
+  return (
+    <Page>
+      <CommonHeader/>
+
+      <Content>
+        <Outlet />
+      </Content>
+
+      <CommonFooter />
+    </Page>
+  );
+};
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={
       <Providers>
-        <Page>
-          <CommonHeader/>
-
-          <Content>
-            <Outlet />
-          </Content>
-
-          <CommonFooter />
-        </Page>
+        <Layout />
       </Providers>
     }>
       <Route exact path="/" element={<DashboardPage />} />

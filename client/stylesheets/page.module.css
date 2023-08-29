@@ -25,4 +25,9 @@
         background-color: #bebebe;
         grid-area: 'footer';
     }
+
+    .spinner {
+        display: flex;
+        align-self: center;
+    }
 }

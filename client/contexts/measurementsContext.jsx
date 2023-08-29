@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useContext, useLayoutEffect, useMemo, useState } from 'react';
+import { useLoadingStateContext } from './loadingStateContext';
 
 const initialValue = [];
 
@@ -7,12 +8,19 @@ const MeasurementsContext = createContext(initialValue);
 export const useMeasurementsContext = () => useContext(MeasurementsContext);
 
 export const MeasurementsProvider = ({ children }) => {
+    const { componentStartedLoading, componentFinishedLoading } = useLoadingStateContext();
+
     const [measurementRecords, setMeasurementRecords] = useState(initialValue);
 
     useLayoutEffect(() => {
+        const componentName = 'Measurements';
+
+        componentStartedLoading(componentName);
+
         fetch('/measurements', { headers: { 'Content-Type': 'application/json' } })
             .then(response => response.json())
-            .then(records => setMeasurementRecords(records));
+            .then(records => setMeasurementRecords(records))
+            .then(() => componentFinishedLoading(componentName));
     }, []);
 
     const addMeasurement = useCallback(({ weight, date }) => {
