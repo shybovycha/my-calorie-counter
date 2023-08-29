@@ -16,6 +16,7 @@
   },
   "scripts": {
     "build": "esbuild client/index.jsx --bundle --minify --outfile=dist/bundle.js && cp client/index.html dist",
+    "watch": "esbuild client/index.jsx --bundle --watch --outfile=dist/bundle.js",
     "start": "node server/index.js"
   }
 }
