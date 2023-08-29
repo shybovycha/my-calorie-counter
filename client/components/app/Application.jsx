@@ -21,18 +21,40 @@ import CommonHeader from '../layout/CommonHeader';
 
 import { Page, Content } from '../utility/Page';
 
+import { DailyBalanceProvider } from '../../contexts/dailyBalanceContext';
+import { GeneralInformationProvider } from '../../contexts/generalInformationContext';
+import { MeasurementsProvider } from '../../contexts/measurementsContext';
+import { ExerciseProvider } from '../../contexts/exerciseContext';
+import { NutritionProvider } from '../../contexts/nutritionContext';
+
+const Providers = ({ children }) => (
+  <GeneralInformationProvider>
+    <MeasurementsProvider>
+      <ExerciseProvider>
+        <NutritionProvider>
+          <DailyBalanceProvider>
+            {children}
+          </DailyBalanceProvider>
+        </NutritionProvider>
+      </ExerciseProvider>
+    </MeasurementsProvider>
+  </GeneralInformationProvider>
+);
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={
-      <Page>
-        <Content>
-          <CommonHeader/>
+      <Providers>
+        <Page>
+          <Content>
+            <CommonHeader/>
 
-          <Outlet />
+            <Outlet />
 
-          <CommonFooter />
-        </Content>
-      </Page>
+            <CommonFooter />
+          </Content>
+        </Page>
+      </Providers>
     }>
       <Route exact path="/" element={<DashboardPage />} />
 
