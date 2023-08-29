@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useLayoutEffect, useState } from 'react';
 
 import { format as formatDate, parse as parseDate } from 'date-fns';
 
@@ -7,39 +7,44 @@ import { useGeneralInformationContext } from '../../contexts/generalInformationC
 export default () => {
     const { generalInformation, updateGeneralInformation } = useGeneralInformationContext();
 
-    const { gender, height, exerciseLevel, dateOfBirth } = generalInformation;
+    const [height, setHeight] = useState(generalInformation.height);
+    const [dateOfBirth, setDateOfBirth] = useState(generalInformation.dateOfBirth);
+    const [gender, setGender] = useState(generalInformation.gender);
+    const [exerciseLevel, setExerciseLevel] = useState(generalInformation.exerciseLevel);
 
-    const heightRef = useRef(null);
-    const genderRef = useRef(null);
-    const dateOfBirthRef = useRef(null);
-    const exerciseLevelRef = useRef(null);
+    useLayoutEffect(() => {
+        setHeight(generalInformation.height);
+        setDateOfBirth(generalInformation.dateOfBirth);
+        setGender(generalInformation.gender);
+        setExerciseLevel(generalInformation.exerciseLevel);
+    }, [generalInformation]);
 
     const saveChanges = useCallback((evt) => {
         evt.preventDefault();
 
         updateGeneralInformation({
-            height: parseInt(heightRef.current.value) ?? 0,
-            gender: genderRef.current.value,
-            exerciseLevel: parseInt(exerciseLevelRef.current.value),
-            dateOfBirth: formatDate(parseDate(dateOfBirthRef.current.value, 'yyyy-MM-dd', new Date()), 'dd/MM/yyyy'),
+            height: parseInt(height) ?? 0,
+            gender: gender,
+            exerciseLevel: parseInt(exerciseLevel),
+            dateOfBirth: formatDate(parseDate(dateOfBirth, 'yyyy-MM-dd', new Date()), 'dd/MM/yyyy'),
         });
-    }, [heightRef, genderRef, dateOfBirthRef, exerciseLevelRef, updateGeneralInformation]);
+    }, [height, gender, dateOfBirth, exerciseLevel, updateGeneralInformation]);
 
     return (
         <form onSubmit={saveChanges}>
             <div className="row">
                 <label htmlFor="height">Height (cm):</label>
-                <input type="number" id="height" ref={heightRef} defaultValue={height} />
+                <input type="number" id="height" value={height} onChange={(evt) => setHeight(parseInt(evt.target.value))} />
             </div>
 
             <div className="row">
                 <label htmlFor="dob">Date of birth:</label>
-                <input type="date" id="dob" ref={dateOfBirthRef} defaultValue={parseDate(dateOfBirth, 'dd/MM/yyyy', new Date()).toLocaleDateString('en-CA')} />
+                <input type="date" id="dob" value={parseDate(dateOfBirth, 'dd/MM/yyyy', new Date()).toLocaleDateString('en-CA')} onChange={(evt) => setDateOfBirth(formatDate(parseDate(dateOfBirth, 'yyyy-MM-dd', new Date())), 'dd/MM/yyyy')} />
             </div>
 
             <div className="row">
                 <label htmlFor="gender">Gender:</label>
-                <select id="gender" ref={genderRef} defaultValue={gender}>
+                <select id="gender" value={gender} onChange={(evt) => setGender(evt.target.value)}>
                     <option value="MALE">Male</option>
                     <option value="FEMALE">Female</option>
                 </select>
@@ -47,7 +52,7 @@ export default () => {
 
             <div className="row">
                 <label htmlFor="exercise-level">Fitness level:</label>
-                <select id="exercise-level" defaultValue={exerciseLevel} ref={exerciseLevelRef}>
+                <select id="exercise-level" value={exerciseLevel} onChange={(evt) => setExerciseLevel(parseInt(evt.target.value))}>
                     <option value={0}>No exercise</option>
                     <option value={1}>Occasionally (once a week or less)</option>
                     <option value={2}>Sometimes (once or twice a week)</option>
