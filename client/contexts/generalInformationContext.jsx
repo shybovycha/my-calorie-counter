@@ -3,7 +3,7 @@ import React, { createContext, useCallback, useContext, useLayoutEffect, useMemo
 const initialValue = {
     gender: 'MALE',
     height: 160,
-    dateOfBirth: new Date(),
+    dateOfBirth: '01/01/2000',
     exerciseLevel: 1,
 };
 

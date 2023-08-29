@@ -7,7 +7,7 @@ import { useGeneralInformationContext } from './generalInformationContext';
 
 import { getDailyCalorieBalance } from './dailyBalanceCalculator';
 
-const DailyBalanceContext = createContext([]);
+const DailyBalanceContext = createContext({});
 
 export const useDailyBalanceContext = () => useContext(DailyBalanceContext);
 

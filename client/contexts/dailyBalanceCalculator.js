@@ -1,10 +1,9 @@
 import { differenceInYears, parse } from 'date-fns'
 
 export const getDailyCalorieBalance = ({ dateOfBirth, gender, height, exerciseLevel, weightRecords }) => {
-    console.log('>>', { dateOfBirth, gender, height, exerciseLevel, weightRecords });
-
   const lastWeight = weightRecords && weightRecords.length > 0 ? weightRecords[weightRecords.length - 1].weight : 0;
-  const age = differenceInYears(parse(dateOfBirth, 'dd/MM/yyyy', new Date()), new Date());
+  const dob = parse(dateOfBirth, 'dd/MM/yyyy', new Date());
+  const age = differenceInYears(new Date(), dob);
 
   const BMR = {
     MALE: (66.47 + (13.75 * lastWeight) + (5.0 * height)) - (6.75 * age),

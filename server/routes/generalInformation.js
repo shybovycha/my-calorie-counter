@@ -6,7 +6,7 @@ let information = {
   gender: 'MALE',
   exerciseLevel: 1,
   height: 160,
-  weight: 80,
+  dateOfBirth: '01/01/2000',
 };
 
 router.get('/', (req, res) => {
