@@ -8,13 +8,13 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-import DashboardPage from './DashboardPage';
-import TrackFoodPage from './TrackFoodPage';
-import TrackWorkoutPage from './TrackWorkoutPage';
-import TrackWeightPage from './TrackWeightPage';
-import HistoryPage from './HistoryPage';
-import ChartsPage from './ChartsPage';
-import SettingsPage from './SettingsPage';
+import DashboardPage from '../pages/DashboardPage';
+import TrackFoodPage from '../pages/TrackFoodPage';
+import TrackWorkoutPage from '../pages/TrackWorkoutPage';
+import TrackWeightPage from '../pages/TrackWeightPage';
+import HistoryPage from '../pages/HistoryPage';
+import ChartsPage from '../pages/ChartsPage';
+import SettingsPage from '../pages/SettingsPage';
 
 import CommonFooter from '../layout/CommonFooter';
 import CommonHeader from '../layout/CommonHeader';
