@@ -10,12 +10,12 @@ let information = {
 };
 
 router.get('/', (req, res) => {
-  res.send(JSON.stringify(information));
+  res.json(information);
 });
 
 router.post('/', (req, res) => {
-  information = JSON.parse(req.body);
-  res.send(JSON.stringify(information));
+  information = req.body;
+  res.json(information);
 });
 
 module.exports = router;
