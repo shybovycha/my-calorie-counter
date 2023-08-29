@@ -25,7 +25,7 @@ export const DailyBalanceProvider = ({ children }) => {
             gender,
             height,
             exerciseLevel,
-            weightRecords: measurementRecords.map(({ weight }) => weight),
+            weightRecords: measurementRecords,
         });
     }, [generalInformation, measurementRecords]);
 

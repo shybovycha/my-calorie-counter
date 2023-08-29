@@ -23,7 +23,7 @@ export const MeasurementsProvider = ({ children }) => {
             .then(() => componentFinishedLoading(componentName));
     }, []);
 
-    const addMeasurement = useCallback(({ weight, date }) => {
+    const recordWeight = useCallback(({ weight, date }) => {
         const record = { weight, date };
 
         setMeasurementRecords([ ...measurementRecords, record ]);
@@ -33,8 +33,8 @@ export const MeasurementsProvider = ({ children }) => {
 
     const contextValue = useMemo(() => ({
         measurementRecords,
-        addMeasurement,
-    }), [measurementRecords, addMeasurement]);
+        recordWeight,
+    }), [measurementRecords, recordWeight]);
 
     return (
         <MeasurementsContext.Provider value={contextValue}>

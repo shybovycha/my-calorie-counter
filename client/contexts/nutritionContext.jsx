@@ -23,7 +23,7 @@ export const NutritionProvider = ({ children }) => {
             .then(() => componentFinishedLoading(componentName));
     }, []);
 
-    const addNutrition = useCallback(({ ingridients, amount, name, energy, date }) => {
+    const recordNutrition = useCallback(({ ingridients, amount, name, energy, date }) => {
         const record = { ingridients, amount, name, energy, date };
 
         setNutritionRecords([ ...nutritionRecords, record ]);
@@ -33,8 +33,8 @@ export const NutritionProvider = ({ children }) => {
 
     const contextValue = useMemo(() => ({
         nutritionRecords,
-        addNutrition,
-    }), [nutritionRecords, addNutrition]);
+        recordNutrition,
+    }), [nutritionRecords, recordNutrition]);
 
     return (
         <NutritionContext.Provider value={contextValue}>

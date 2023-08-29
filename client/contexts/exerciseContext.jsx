@@ -23,8 +23,8 @@ export const ExerciseProvider = ({ children }) => {
             .then(() => componentFinishedLoading(componentName));
     }, []);
 
-    const addExercise = useCallback(({ exercise, duration, energy, date }) => {
-        const record = { exercise, duration, energy, date };
+    const recordExercise = useCallback(({ name, duration, energy, date }) => {
+        const record = { name, duration, energy, date };
 
         setExerciseRecords([ ...exerciseRecords, record ]);
 
@@ -33,8 +33,8 @@ export const ExerciseProvider = ({ children }) => {
 
     const contextValue = useMemo(() => ({
         exerciseRecords,
-        addExercise,
-    }), [exerciseRecords, addExercise]);
+        recordExercise,
+    }), [exerciseRecords, recordExercise]);
 
     return (
         <ExerciseContext.Provider value={contextValue}>
