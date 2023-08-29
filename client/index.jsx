@@ -4,5 +4,5 @@ import ReactDOM from 'react-dom';
 import Application from './components/app/Application';
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.createRoot(document.getElementById('root')).render(<Application />);
+  ReactDOM.render(<Application />, document.getElementById('root'));
 });
