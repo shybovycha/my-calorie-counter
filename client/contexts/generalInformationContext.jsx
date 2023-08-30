@@ -1,6 +1,7 @@
 import React, { createContext, useCallback, useContext, useLayoutEffect, useState } from 'react';
 
 import { useLoadingStateContext } from './loadingStateContext';
+import { fetchGeneralInformation, storeGeneralInformation } from '../api/generalInformationAPI';
 
 const initialValue = {
     gender: 'MALE',
@@ -23,8 +24,7 @@ export const GeneralInformationProvider = ({ children }) => {
 
         componentStartedLoading(componentName);
 
-        fetch('/general-information', { headers: { 'Content-Type': 'application/json' } })
-            .then(response => response.json())
+        fetchGeneralInformation()
             .then(data => setGeneralInformation(data))
             .then(() => componentFinishedLoading(componentName));
     }, []);
@@ -34,7 +34,7 @@ export const GeneralInformationProvider = ({ children }) => {
 
         setGeneralInformation(record);
 
-        fetch('/general-information', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) });
+        storeGeneralInformation(record);
     }, [generalInformation, setGeneralInformation]);
 
     const contextValue = {

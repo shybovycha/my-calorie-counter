@@ -1,6 +1,7 @@
 import React, { createContext, useCallback, useContext, useLayoutEffect, useState } from 'react';
 
 import { useLoadingStateContext } from './loadingStateContext';
+import { fetchExerciseRecords, storeExerciseRecord } from '../api/exerciseAPI';
 
 const initialValue = [];
 
@@ -18,8 +19,7 @@ export const ExerciseProvider = ({ children }) => {
 
         componentStartedLoading(componentName);
 
-        fetch('/exercise', { headers: { 'Content-Type': 'application/json' } })
-            .then(response => response.json())
+        fetchExerciseRecords()
             .then(records => setExerciseRecords(records))
             .then(() => componentFinishedLoading(componentName));
     }, []);
@@ -29,7 +29,7 @@ export const ExerciseProvider = ({ children }) => {
 
         setExerciseRecords([ ...exerciseRecords, record ]);
 
-        fetch('/exercise', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) });
+        storeExerciseRecord(record);
     }, [exerciseRecords, setExerciseRecords]);
 
     const contextValue = {

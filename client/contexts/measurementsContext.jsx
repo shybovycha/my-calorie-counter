@@ -1,6 +1,7 @@
 import React, { createContext, useCallback, useContext, useLayoutEffect, useState } from 'react';
 
 import { useLoadingStateContext } from './loadingStateContext';
+import { fetchMeasurements, storeMeasurement } from '../api/measurementsAPI';
 
 const initialValue = [];
 
@@ -18,8 +19,7 @@ export const MeasurementsProvider = ({ children }) => {
 
         componentStartedLoading(componentName);
 
-        fetch('/measurements', { headers: { 'Content-Type': 'application/json' } })
-            .then(response => response.json())
+        fetchMeasurements()
             .then(records => setMeasurementRecords(records))
             .then(() => componentFinishedLoading(componentName));
     }, []);
@@ -29,7 +29,7 @@ export const MeasurementsProvider = ({ children }) => {
 
         setMeasurementRecords([ ...measurementRecords, record ]);
 
-        fetch('/measurements', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) });
+        storeMeasurement(record);
     }, [measurementRecords, setMeasurementRecords]);
 
     const contextValue = {

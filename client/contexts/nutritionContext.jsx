@@ -1,6 +1,7 @@
 import React, { createContext, useCallback, useContext, useLayoutEffect, useState } from 'react';
 
 import { useLoadingStateContext } from './loadingStateContext';
+import { fetchNutritionRecords, storeNutritionRecord } from '../api/nutritionAPI';
 
 const initialValue = [];
 
@@ -18,8 +19,7 @@ export const NutritionProvider = ({ children }) => {
 
         componentStartedLoading(componentName);
 
-        fetch('/nutrition', { headers: { 'Content-Type': 'application/json' } })
-            .then(response => response.json())
+        fetchNutritionRecords()
             .then(records => setNutritionRecords(records))
             .then(() => componentFinishedLoading(componentName));
     }, []);
@@ -29,7 +29,7 @@ export const NutritionProvider = ({ children }) => {
 
         setNutritionRecords([ ...nutritionRecords, record ]);
 
-        fetch('/nutrition', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) });
+        storeNutritionRecord(record);
     }, [nutritionRecords, setNutritionRecords]);
 
     const contextValue = {
