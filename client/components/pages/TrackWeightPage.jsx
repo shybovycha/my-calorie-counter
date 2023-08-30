@@ -7,23 +7,25 @@ import { useMeasurementsContext } from '../../contexts/measurementsContext';
 export default () => {
     const { recordWeight } = useMeasurementsContext();
 
-    const weightRef = useRef(null);
+    const formRef = useRef(null);
 
     const saveChanges = useCallback((evt) => {
         evt.preventDefault();
 
+        const formData = new FormData(formRef.current);
+
         recordWeight({
-            weight: parseInt(weightRef.current.value) ?? 0,
+            weight: parseInt(formData.get('weight')) ?? 0,
             date: formatDate(new Date(), 'dd/MM/yyyy'),
         });
-    }, [weightRef, recordWeight]);
+    }, [formRef, recordWeight]);
 
     return (
-        <form onSubmit={saveChanges}>
+        <form onSubmit={saveChanges} ref={formRef}>
             <div className="row">
                 <label htmlFor="weight">Weight:</label>
                 {/* TODO: consider using select / autocomplete instead */}
-                <input id="weight" type="number" ref={weightRef} />
+                <input id="weight" name="weight" type="number" />
             </div>
 
             <div className="row">

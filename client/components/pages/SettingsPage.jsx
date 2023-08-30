@@ -9,37 +9,36 @@ export default () => {
 
     const { gender, height, exerciseLevel, dateOfBirth } = generalInformation;
 
-    const heightRef = useRef(null);
-    const genderRef = useRef(null);
-    const dateOfBirthRef = useRef(null);
-    const exerciseLevelRef = useRef(null);
+    const formRef = useRef(null);
 
     const saveChanges = useCallback((evt) => {
         evt.preventDefault();
 
+        const formData = new FormData(formRef.current);
+
         updateGeneralInformation({
-            height: parseInt(heightRef.current.value) ?? 0,
-            gender: genderRef.current.value,
-            exerciseLevel: parseInt(exerciseLevelRef.current.value),
-            dateOfBirth: formatDate(parseDate(dateOfBirthRef.current.value, 'yyyy-MM-dd', new Date()), 'dd/MM/yyyy'),
+            height: parseInt(formData.get('height')) ?? 0,
+            gender: formData.get('gender'),
+            exerciseLevel: parseInt(formData.get('exerciseLevel')),
+            dateOfBirth: formatDate(parseDate(formData.get('dateOfBirth'), 'yyyy-MM-dd', new Date()), 'dd/MM/yyyy'),
         });
-    }, [heightRef, genderRef, dateOfBirthRef, exerciseLevelRef, updateGeneralInformation]);
+    }, [formRef, updateGeneralInformation]);
 
     return (
-        <form onSubmit={saveChanges}>
+        <form onSubmit={saveChanges} ref={formRef}>
             <div className="row">
                 <label htmlFor="height">Height (cm):</label>
-                <input type="number" id="height" ref={heightRef} defaultValue={height} />
+                <input type="number" id="height" name="height" defaultValue={height} />
             </div>
 
             <div className="row">
-                <label htmlFor="dob">Date of birth:</label>
-                <input type="date" id="dob" ref={dateOfBirthRef} defaultValue={parseDate(dateOfBirth, 'dd/MM/yyyy', new Date()).toLocaleDateString('en-CA')} />
+                <label htmlFor="dateOfBirth">Date of birth:</label>
+                <input type="date" id="dateOfBirth" name="dateOfBirth" defaultValue={parseDate(dateOfBirth, 'dd/MM/yyyy', new Date()).toLocaleDateString('en-CA')} />
             </div>
 
             <div className="row">
                 <label htmlFor="gender">Gender:</label>
-                <select id="gender" ref={genderRef} defaultValue={gender}>
+                <select id="gender" name="gender" defaultValue={gender}>
                     <option value="MALE">Male</option>
                     <option value="FEMALE">Female</option>
                 </select>
@@ -47,7 +46,7 @@ export default () => {
 
             <div className="row">
                 <label htmlFor="exercise-level">Fitness level:</label>
-                <select id="exercise-level" defaultValue={exerciseLevel} ref={exerciseLevelRef}>
+                <select id="exercise-level" name="exerciseLevel" defaultValue={exerciseLevel}>
                     <option value={0}>No exercise</option>
                     <option value={1}>Occasionally (once a week or less)</option>
                     <option value={2}>Sometimes (once or twice a week)</option>

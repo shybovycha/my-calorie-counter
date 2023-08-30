@@ -7,30 +7,31 @@ import { useExerciseContext } from '../../contexts/exerciseContext';
 export default () => {
     const { recordExercise } = useExerciseContext();
 
-    const nameRef = useRef(null);
-    const energyRef = useRef(null);
+    const formRef = useRef(null);
 
     const saveChanges = useCallback((evt) => {
         evt.preventDefault();
 
+        const formData = new FormData(formRef.current);
+
         recordExercise({
-            energy: parseInt(energyRef.current.value) ?? 0,
-            name: nameRef.current.value,
+            energy: parseInt(formData.get('energy')) ?? 0,
+            name: formData.get('name'),
             date: formatDate(new Date(), 'dd/MM/yyyy'),
         });
-    }, [energyRef, nameRef, recordExercise]);
+    }, [formRef, recordExercise]);
 
     return (
-        <form onSubmit={saveChanges}>
+        <form onSubmit={saveChanges} ref={formRef}>
             <div className="row">
                 <label htmlFor="name">Exercise:</label>
                 {/* TODO: consider using select / autocomplete instead */}
-                <input id="name" ref={nameRef} />
+                <input id="name" name="name" />
             </div>
 
             <div className="row">
                 <label htmlFor="energy">Energy burned:</label>
-                <input type="number" id="energy" ref={energyRef} defaultValue={0} />
+                <input type="number" id="energy" name="energy" defaultValue={0} />
             </div>
 
             <div className="row">
