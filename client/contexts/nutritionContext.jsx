@@ -1,4 +1,5 @@
-import React, { createContext, useCallback, useContext, useLayoutEffect, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useContext, useLayoutEffect, useState } from 'react';
+
 import { useLoadingStateContext } from './loadingStateContext';
 
 const initialValue = [];
@@ -31,10 +32,10 @@ export const NutritionProvider = ({ children }) => {
         fetch('/nutrition', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) });
     }, [nutritionRecords, setNutritionRecords]);
 
-    const contextValue = useMemo(() => ({
+    const contextValue = {
         nutritionRecords,
         recordNutrition,
-    }), [nutritionRecords, recordNutrition]);
+    };
 
     return (
         <NutritionContext.Provider value={contextValue}>

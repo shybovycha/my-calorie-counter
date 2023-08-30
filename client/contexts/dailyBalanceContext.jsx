@@ -36,10 +36,10 @@ export const DailyBalanceProvider = ({ children }) => {
         return [...nutrition, ...exercise].reduce((acc, elt) => acc - elt, dailyBalance);
     }, [dailyBalance, nutritionRecords, exerciseRecords]);
 
-    const contextValue = useMemo(() => ({
+    const contextValue = {
         currentBalance,
         dailyBalance,
-    }), [dailyBalance, currentBalance]);
+    };
 
     return (
         <DailyBalanceContext.Provider value={contextValue}>

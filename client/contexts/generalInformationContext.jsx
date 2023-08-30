@@ -1,4 +1,5 @@
-import React, { createContext, useCallback, useContext, useLayoutEffect, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useContext, useLayoutEffect, useState } from 'react';
+
 import { useLoadingStateContext } from './loadingStateContext';
 
 const initialValue = {
@@ -36,10 +37,10 @@ export const GeneralInformationProvider = ({ children }) => {
         fetch('/general-information', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) });
     }, [generalInformation, setGeneralInformation]);
 
-    const contextValue = useMemo(() => ({
+    const contextValue = {
         generalInformation,
         updateGeneralInformation,
-    }), [generalInformation, updateGeneralInformation]);
+    };
 
     return (
         <GeneralInformationContext.Provider value={contextValue}>

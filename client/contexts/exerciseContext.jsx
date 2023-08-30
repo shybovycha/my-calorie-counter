@@ -1,4 +1,5 @@
-import React, { createContext, useCallback, useContext, useLayoutEffect, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useContext, useLayoutEffect, useState } from 'react';
+
 import { useLoadingStateContext } from './loadingStateContext';
 
 const initialValue = [];
@@ -31,10 +32,10 @@ export const ExerciseProvider = ({ children }) => {
         fetch('/exercise', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) });
     }, [exerciseRecords, setExerciseRecords]);
 
-    const contextValue = useMemo(() => ({
+    const contextValue = {
         exerciseRecords,
         recordExercise,
-    }), [exerciseRecords, recordExercise]);
+    };
 
     return (
         <ExerciseContext.Provider value={contextValue}>

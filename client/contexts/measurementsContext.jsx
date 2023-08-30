@@ -1,4 +1,5 @@
-import React, { createContext, useCallback, useContext, useLayoutEffect, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useContext, useLayoutEffect, useState } from 'react';
+
 import { useLoadingStateContext } from './loadingStateContext';
 
 const initialValue = [];
@@ -31,10 +32,10 @@ export const MeasurementsProvider = ({ children }) => {
         fetch('/measurements', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(record) });
     }, [measurementRecords, setMeasurementRecords]);
 
-    const contextValue = useMemo(() => ({
+    const contextValue = {
         measurementRecords,
         recordWeight,
-    }), [measurementRecords, recordWeight]);
+    };
 
     return (
         <MeasurementsContext.Provider value={contextValue}>

@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useLayoutEffect, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
 
 const initialValue = new Map();
 
@@ -19,15 +19,13 @@ export const LoadingStateProvider = ({ children }) => {
         setComponents(new Map([...components.entries()]));
     }, [components, setComponents]);
 
-    const isLoading = useMemo(() => {
-        return components.size === 0 || [...components.values()].some(Boolean);
-    }, [components]);
+    const isLoading = useMemo(() => components.size === 0 || [...components.values()].some(Boolean), [components]);
 
-    const contextValue = useMemo(() => ({
+    const contextValue = {
         isLoading,
         componentStartedLoading,
         componentFinishedLoading,
-    }), [isLoading, componentStartedLoading, componentFinishedLoading]);
+    };
 
     return (
         <LoadingStateContext.Provider value={contextValue}>
