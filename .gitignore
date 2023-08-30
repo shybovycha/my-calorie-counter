@@ -5,3 +5,4 @@ dist/
 *.log
 server/public
 .cache
+.yarn
